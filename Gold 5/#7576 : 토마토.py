@@ -11,20 +11,20 @@ q = deque(ripe)
 days = -1
 
 while q:
-  days += 1
-  for _ in range(len(q)):
-    x, y = q.popleft()
+    days += 1
+    for _ in range(len(q)):
+        x, y = q.popleft()
     
-    for i in range(4):
-      nx, ny = x + dx[i], y + dy[i]
-      if 0 <= nx < N and 0 <= ny < M and box[nx][ny] == 0:
-        box[nx][ny] = 1
-        q.append((nx, ny))
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
+            if 0 <= nx < N and 0 <= ny < M and box[nx][ny] == 0:
+                box[nx][ny] = 1
+                q.append((nx, ny))
 
 for i in range(N):
-  for j in range(M):
-    if box[i][j] == 0:
-      print(-1)
-      exit()
+    for j in range(M):
+        if box[i][j] == 0:
+            print(-1)
+            exit()
 
 print(days)
