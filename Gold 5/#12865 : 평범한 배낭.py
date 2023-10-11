@@ -1,19 +1,17 @@
-def knapsack(n, k, weights, values):
-    dp = [[0] * (k + 1) for _ in range(n + 1)]
-    
-    for i in range(1, n + 1):
-        for w in range(1, k + 1):
-            if weights[i - 1] <= w:
-                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1])
+def knapsack(N, K, weights, values):
+    dp = [[0] * (K + 1) for _ in range(N + 1)]
+
+    for i in range(1, N + 1):
+        for j in range(1, K + 1):
+            if weights[i] > j:
+                dp[i][j] = dp[i - 1][j]
             else:
-                dp[i][w] = dp[i - 1][w]
-                
-    return dp[n][k]
+                dp[i][j] = max(dp[i - 1][j - weights[i]] + values[i], dp[i - 1][j])
+   
+    return dp[N][K]
 
 N, K = map(int, input().split())
-weights = []
-values = []
-
+weights, values = [0], [0]
 for _ in range(N):
     w, v = map(int, input().split())
     weights.append(w)
