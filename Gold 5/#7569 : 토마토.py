@@ -23,10 +23,8 @@ def solution(M, N, H, box):
                     return -1
 
     return cnt
-        
 
 M, N, H = map(int, input().split())
-# arr shape = (H, N, M)
 box = [[list(map(int, input().split())) for j in range(N)] for k in range(H)]
 
 print(solution(M, N, H, box))
