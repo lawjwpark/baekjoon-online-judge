@@ -20,6 +20,9 @@ def solution(N, M, board):
     cnt = 0
     while q:
         cnt += 1
+        # print(f"cnt {cnt}")
+        # print(f"q {q}")
+        # print("*" * 10)
         if cnt > 10:
             return -1
         for _ in range(len(q)):
@@ -53,13 +56,12 @@ def solution(N, M, board):
                             elif nb != r and board[nb[0]][nb[1]] == ".":
                                 b = nb
                     
-                    if b == hole:
-                        return -1
-                    elif r == hole:
+                    if r == hole and b != hole:
                         return cnt
                     
-                    if r != r_copy or b != b_copy:
+                    if (r != r_copy or b != b_copy) and b != hole:
                         q.append([r, b, d])
+    return -1
 
 N, M = map(int, input().split())
 board = [list(input()) for _ in range(N)]
